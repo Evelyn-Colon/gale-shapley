@@ -36,3 +36,18 @@ def parse_pref(filepath):
     except ValueError as e:
         print(e)
     return ([], [])
+
+def write_matchings(filepath, matchings):
+    # Help with regex syntax: https://www.w3schools.com/python/python_regex.asp
+    # Help with capturing groups: 
+    # https://stackoverflow.com/questions/10059673/named-regular-expression-group-pgroup-nameregexp-what-does-p-stand-for
+    name_match = re.search("(?P<path>.*\/)?(?P<name>[^\.]*)(\..*)?", filepath)
+    output_full_path = "data/matchings.out"
+    if name_match is not None:
+        output_full_path = name_match.group("path") + name_match.group("name") + ".out"
+    with open(f"{output_full_path}", 'w') as file:
+        for hospital, student in matchings.items():
+            file.write(f"{hospital + 1} {student + 1}\n")
+    return output_full_path
+
+
