@@ -17,6 +17,8 @@ def main():
         h_list, s_list = parse_pref(filepath)
         print(h_list)
         print(s_list)
+        applicant_matched = gale_shapley(h_list, s_list)
+        print(applicant_matched)
     elif match_or_verify.lower() == "verify":
         pass
     else:
