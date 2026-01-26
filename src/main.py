@@ -1,5 +1,5 @@
 from matcher import gale_shapley
-from utils import parse_pref, write_matchings
+from utils import parse_pref, write_matchings, parse_matching, verify_matching
 
 # This is the main command line interface for the program.
 import sys
@@ -25,7 +25,26 @@ def main():
         else:
             print("No data written.")
     elif match_or_verify.lower() == "verify":
-        pass
+        try:
+            prefs_path = sys.argv[2]
+            matching_path = sys.argv[3]
+        except:
+            print("Usage: verify <prefs.in> <matching.out>")
+            return
+
+        h_list, s_list = parse_pref(prefs_path)
+        if not (h_list and s_list):
+            print("INVALID (could not parse preferences)")
+            return
+
+        matching = parse_matching(matching_path)
+        if matching is None:
+            print("INVALID (could not parse matching file)")
+            return
+
+        result = verify_matching(h_list, s_list, matching)
+        print(result)
+
     else:
         print("Usage: <operation> <filepath>")
         print("Operation options are 'match' or 'verify'")
