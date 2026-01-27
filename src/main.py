@@ -1,28 +1,26 @@
 from matcher import gale_shapley
 from utils import parse_pref, write_matchings, parse_matching, verify_matching
 
-# This is the main command line interface for the program.
 import sys
+
 def main():
-    # First argument must be match or verify
-    # Second argument must be a filename
     try:
         match_or_verify = sys.argv[1]
         prefs_path = sys.argv[2]
     except:
         print("Usage: match <operation> <filepath>\nOR\nverify <prefs.in> <matching.out>")
         return
+
     if match_or_verify.lower() == "match":
         h_list, s_list = parse_pref(prefs_path)
-        # print(h_list)
-        # print(s_list)
+
         if h_list and s_list:
             matchings, num_offers = gale_shapley(h_list, s_list)
             output_path = write_matchings(prefs_path, matchings)
             print(f"Matching from Gale-Shapley Algorithm written to {output_path}!\nNumber of offers made: {num_offers}")
-        # print(matchings)
         else:
             print("No data written.")
+
     elif match_or_verify.lower() == "verify":
         try:
             matching_path = sys.argv[3]
@@ -35,7 +33,12 @@ def main():
             print("INVALID (could not parse preferences)")
             return
 
-        matching = parse_matching(matching_path)
+        matching = parse_matching(matching_path, len(h_list))
+
+        if matching == "TOO_MANY_LINES":
+            print(f"INVALID (expected {len(h_list)} matches, got more)")
+            return
+
         if matching is None:
             print("INVALID (could not parse matching file)")
             return

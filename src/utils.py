@@ -41,7 +41,7 @@ def write_matchings(filepath, matchings):
     # Help with regex syntax: https://www.w3schools.com/python/python_regex.asp
     # Help with capturing groups: 
     # https://stackoverflow.com/questions/10059673/named-regular-expression-group-pgroup-nameregexp-what-does-p-stand-for
-    name_match = re.search("(?P<path>.*\/)?(?P<name>[^\.]*)(\..*)?", filepath)
+    name_match = re.search(r"(?P<path>.*/)?(?P<name>[^.]*)(\..*)?", filepath)
     output_full_path = "data/matchings.out"
     if name_match is not None:
         output_full_path = name_match.group("path") + name_match.group("name") + ".out"
@@ -50,25 +50,30 @@ def write_matchings(filepath, matchings):
             file.write(f"{hospital + 1} {student + 1}\n")
     return output_full_path
 
-def parse_matching(filepath):
-    # Reads a matching output file with lines like:
-    # 1 2
-    # 2 3
-    # 3 1
-    # Returns dict {hospital_index: student_index} using 0-based indices.
+def parse_matching(filepath, n):
     try:
         matching = {}
+        line_count = 0
+
         with open(filepath, "r") as f:
             for line in f:
                 line = line.strip()
                 if not line:
                     continue
+
+                line_count += 1
+
+                if line_count > n:
+                    return "TOO_MANY_LINES"
+
                 parts = line.split()
                 if len(parts) != 2:
                     return None
+
                 h = int(parts[0]) - 1
                 s = int(parts[1]) - 1
                 matching[h] = s
+
         return matching
     except:
         return None
@@ -83,8 +88,9 @@ def verify_matching(h_list, s_list, matching):
       # "VALID STABLE" or "INVALID (...)" or "UNSTABLE (...)"
     n = len(h_list)
 
-    if len(matching) > n:
-        return "INVALID (too many hospitals in matching)"
+    # Validity 
+    if len(matching) != n:
+        return f"INVALID (expected {n} matches, got {len(matching)})"
 
     seen_students = set()
     for h in range(n):
