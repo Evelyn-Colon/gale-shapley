@@ -8,25 +8,23 @@ def main():
     # Second argument must be a filename
     try:
         match_or_verify = sys.argv[1]
-        filepath = sys.argv[2]
+        prefs_path = sys.argv[2]
     except:
-        print("Usage: <operation> <filepath>")
-        print("Operation options are 'match' or 'verify'")
+        print("Usage: match <operation> <filepath>\nOR\nverify <prefs.in> <matching.out>")
         return
     if match_or_verify.lower() == "match":
-        h_list, s_list = parse_pref(filepath)
+        h_list, s_list = parse_pref(prefs_path)
         # print(h_list)
         # print(s_list)
         if h_list and s_list:
             matchings, num_offers = gale_shapley(h_list, s_list)
-            output_path = write_matchings(filepath, matchings)
+            output_path = write_matchings(prefs_path, matchings)
             print(f"Matching from Gale-Shapley Algorithm written to {output_path}!\nNumber of offers made: {num_offers}")
         # print(matchings)
         else:
             print("No data written.")
     elif match_or_verify.lower() == "verify":
         try:
-            prefs_path = sys.argv[2]
             matching_path = sys.argv[3]
         except:
             print("Usage: verify <prefs.in> <matching.out>")

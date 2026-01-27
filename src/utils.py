@@ -83,9 +83,8 @@ def verify_matching(h_list, s_list, matching):
       # "VALID STABLE" or "INVALID (...)" or "UNSTABLE (...)"
     n = len(h_list)
 
-    # Validity 
-    if len(matching) != n:
-        return f"INVALID (expected {n} matches, got {len(matching)})"
+    if len(matching) > n:
+        return "INVALID (too many hospitals in matching)"
 
     seen_students = set()
     for h in range(n):
