@@ -1,4 +1,5 @@
 def gale_shapley(h_list, s_list):
+    """The main stable matching algorithm. File data has already been parsed and is passed in as parameters."""
     # Source for help determining efficient data structures in Python: https://www.pythonmorsels.com/time-complexities/
     unmatched_hospitals = [len(h_list) - i - 1 for i in range(len(h_list))]
     hospital_pref_index = [0] * len(h_list)
