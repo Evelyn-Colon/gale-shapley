@@ -126,7 +126,7 @@ student preference lists (space-separated numbers)
 
 - Matcher and verifier are tested on the same generated inputs
 
-## Part C Solution (Conclusion)
+## Part C Graph and Solution (Conclusion)
 From the generated graph, we observe:
 
 - The matching algorithm grows approximately O(n²), which matches the theoretical time complexity of the Gale-Shapley algorithm.
