@@ -1,6 +1,6 @@
 from matcher import gale_shapley
 from utils import parse_pref, write_matchings, parse_matching, verify_matching
-from analysis import run_tests
+# from analysis import run_tests
 
 import sys
 
@@ -50,8 +50,8 @@ def main():
 
         result = verify_matching(h_list, s_list, matching)
         print(result)
-    elif match_or_verify.lower() == "analyze":
-        run_tests()
+    # elif match_or_verify.lower() == "analyze":
+    #     run_tests()
     else:
         print("Usage: <operation> <filepath>")
         print("Operation options are 'match' or 'verify'")
