@@ -4,8 +4,8 @@ Programming Assignment 1: Gale-Shapley Algorithm
 This project implements the Gale-Shapley algorithm for the hospital-student stable matching problem, along with a verifier that checks whether a proposed matching is valid and stable.
 
 ## Team
-1. Evelyn Colon, UFID: 46048391
-2. Imaan Edhi, UFID: 28443010
+1. Evelyn Colon, UFID: 46048391 (user Evelyn-Colon)
+2. Imaan Edhi, UFID: 28443010 (users imaan and imaanedhi. For some reason GitHub behaved strangely and recognized two different emails/accounts, which is a relatively common config issue, but we promise they are the same person.)
 
 ## Project Structure
 ```bash
