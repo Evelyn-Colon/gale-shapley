@@ -9,30 +9,31 @@ This project implements the Gale-Shapley algorithm for the hospital-student stab
 
 ## Project Structure
 ```bash
-matcher.py # Gale-Shapley matching engine
-utils.py # Parsing and verification logic
-main.py # Command-line interface
-analysis.py # Part C scalability testing
-
 examples/
-example1.in
-example1.out
-example2.in
-example2.out
-example3.in
-example3.out
-example4.in
-example5.out
-invalid_duplicate_hospital.out
-invalid_duplicate_student.out
-invalid_example.out
-invalid_missing_hospital.out
-invalid_out_of_range.out
+  example1.in
+  example1.out
+  example2.in
+  example2.out
+  example3.in
+  example3.out
+  example4.in
+  example5.out
+  invalid_duplicate_hospital.out
+  invalid_duplicate_student.out
+  invalid_example.out
+  invalid_missing_hospital.out
+  invalid_out_of_range.out
+
+src/
+  matcher.py # Gale-Shapley matching engine
+  utils.py # Parsing and verification logic
+  main.py # Command-line interface
+  analysis.py # Part C scalability testing
 
 tests/
-pref_lists/ # Generated preference files for Part C
-matchings/ # Output matchings for Part C
-plot.png # Runtime graph
+  pref_lists/ # Generated preference files for Part C
+  matchings/ # Output matchings for Part C
+  plot.png # Runtime graph
 ```
 
 ## Requirements
@@ -42,12 +43,13 @@ plot.png # Runtime graph
 To install matplotlib:
 
 ```bash
-pip3 install matplotlib
+python3 -m pip install matplotlib
 ```
 On macOS (if pip is blocked):
 ```bash
 brew install python-matplotlib
 ```
+
 ## How to Run
 ### Run the Matching Algorithm (Task A)
 ```bash
@@ -91,6 +93,11 @@ If you would like to run the analyzer, make sure you have **matplotlib** install
 
 ```bash
 python3 -m pip install matplotlib
+```
+
+On macOS (if pip is blocked):
+```bash
+brew install python-matplotlib
 ```
 
 To run the analyzer:
