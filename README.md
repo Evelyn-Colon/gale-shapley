@@ -114,8 +114,8 @@ Input format:
 
 ```plaintext
 n
-hospital preference lists
-student preference lists
+hospital preference lists (space-separated numbers)
+student preference lists (space-separated numbers)
 ```
 
 - **Note:** Empty files are handled.
