@@ -112,3 +112,4 @@ def run_tests():
     matching_runtimes, verifier_runtimes = run_matcher_and_verifier("tests/pref_lists")
     plot_runtimes(matching_runtimes, verifier_runtimes)
     
+run_tests()

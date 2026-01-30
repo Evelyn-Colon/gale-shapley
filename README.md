@@ -8,6 +8,7 @@ This project implements the Gale-Shapley algorithm for the hospital-student stab
 2. Imaan Edhi, UFID: 28443010
 
 ## Project Structure
+```bash
 matcher.py # Gale-Shapley matching engine
 utils.py # Parsing and verification logic
 main.py # Command-line interface
@@ -32,6 +33,7 @@ tests/
 pref_lists/ # Generated preference files for Part C
 matchings/ # Output matchings for Part C
 plot.png # Runtime graph
+```
 
 ## Requirements
 - Python 3.8 or higher  
@@ -41,75 +43,88 @@ To install matplotlib:
 
 ```bash
 pip3 install matplotlib
-
+```
 On macOS (if pip is blocked):
-
+```bash
 brew install python-matplotlib
-
+```
 ## How to Run
-Run the Matching Algorithm (Task A)
+### Run the Matching Algorithm (Task A)
+```bash
 python3 src/main.py match examples/example1.in
+```
 
 This generates:
+```plaintext
 examples/example1.out
+```
 
+You can also choose other example files to run (with a `.in` extension), or create your own and place them in `examples/`.
 
-Run the Verifier (Task B)
+### Run the Verifier (Task B)
+```bash
 python3 src/main.py verify examples/example1.in examples/example1.out
+```
 
 
 Possible outputs:
 
+```plaintext
 VALID STABLE
 
 INVALID (with reason)
 
 UNSTABLE (with blocking pair)
+```
 
 Example invalid test:
 
+```bash
 python3 src/main.py verify examples/example1.in examples/invalid_duplicate_student.out
+```
 
+You can also choose other example files to run (with a `.in` and `.out` extension for preferences and matchings, respectively), or create your own and place them in `examples/`.
 
-Part C: Scalability Testing
+### Run the Analyzer (Task B): Optional
 
-To run the scalability experiment and generate the graph:
+If you would like to run the analyzer, Make sure you have **matplotlib** installed:
 
+```bash
+python3 -m pip install matplotlib
+```
+
+To run the analyzer:
+
+```bash
 python3 src/analysis.py
+```
 
-
-This:
-
-Runs both the matcher and verifier on increasing values of n
-
-Measures runtime for each
-
-Produces a line graph saved as: tests/plot.png
+This will run the Task C experiments and generate the graph.
 
 ## Assumptions
 
 Input format:
 
+```plaintext
 n
 hospital preference lists
 student preference lists
+```
 
+- **Note:** Empty files are handled.
 
-Rankings are strict permutations of 1..n
+- Rankings are strict permutations of 1..n
 
-File I/O time is included in runtime measurements
+- File I/O time is included in runtime measurements
 
-Matcher and verifier are tested on the same generated inputs
+- Matcher and verifier are tested on the same generated inputs
 
-## Part C Analysis (Conclusion)
+## Part C Solution (Conclusion)
 From the generated graph, we observe:
 
-The matching algorithm grows approximately O(n²), which matches the theoretical time complexity of the Gale-Shapley algorithm.
-
-The verifier shows similar quadratic growth since it must check all possible blocking pairs.
-
-Both implementations scale predictably and perform efficiently for moderate input sizes up to n = 512.
-
-These results confirm the expected theoretical behavior.
+- The matching algorithm grows approximately O(n²), which matches the theoretical time complexity of the Gale-Shapley algorithm.
+- The verifier shows similar quadratic growth since it must check all possible blocking pairs.
+- Both implementations scale predictably and perform efficiently for moderate input sizes up to n = 512.
+- These results confirm the expected theoretical behavior.
 
 ![Runtime Graph](tests/plot.png)
