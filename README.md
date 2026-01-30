@@ -87,7 +87,7 @@ You can also choose other example files to run (with a `.in` and `.out` extensio
 
 ### Run the Analyzer (Task B): Optional
 
-If you would like to run the analyzer, Make sure you have **matplotlib** installed:
+If you would like to run the analyzer, make sure you have **matplotlib** installed:
 
 ```bash
 python3 -m pip install matplotlib
